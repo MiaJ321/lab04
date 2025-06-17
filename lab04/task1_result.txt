@@ -1,0 +1,125 @@
+```json
+{
+    "use_case_diagram": {
+        "actors": [
+            {"name": "Cashier", "description": "Responsible for opening/closing cash desks and processing sales"},
+            {"name": "StoreManager", "description": "Responsible for ordering products, setting prices, and opening/closing the store"},
+            {"name": "Administrator", "description": "Manages system information including store and cashier details"},
+            {"name": "Customer", "description": "Can browse products, manage cart, checkout, and return products"},
+            {"name": "Supplier", "description": "Accepts purchase orders and recommends new products"}
+        ],
+        "use_cases": [
+            {"name": "processSale", "description": "Cashier processes sales", "actor": "Cashier", "includes": [], "extends": []},
+            {"name": "openCashDesk", "description": "Cashier opens cash desk", "actor": "Cashier", "includes": [], "extends": []},
+            {"name": "closeCashDesk", "description": "Cashier closes cash desk", "actor": "Cashier", "includes": [], "extends": []},
+            {"name": "orderProducts", "description": "Store Manager orders products", "actor": "StoreManager", "includes": [], "extends": []},
+            {"name": "receiveOrderedProduct", "description": "Store Manager receives ordered products", "actor": "StoreManager", "includes": [], "extends": []},
+            {"name": "showStockReports", "description": "Store Manager views stock reports", "actor": "StoreManager", "includes": [], "extends": []},
+            {"name": "changePrice", "description": "Store Manager changes product price", "actor": "StoreManager", "includes": [], "extends": []},
+            {"name": "listSuppliers", "description": "Store Manager lists all suppliers", "actor": "StoreManager", "includes": [], "extends": []},
+            {"name": "openStore", "description": "Store Manager opens the store", "actor": "StoreManager", "includes": [], "extends": []},
+            {"name": "closeStore", "description": "Store Manager closes the store", "actor": "StoreManager", "includes": [], "extends": []},
+            {"name": "manageStore", "description": "Administrator manages store information", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "manageProductCatalog", "description": "Administrator manages product catalog", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "manageCashDesk", "description": "Administrator manages cash desk information", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "manageCashier", "description": "Administrator manages cashier information", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "manageItem", "description": "Administrator manages item information", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "manageSupplier", "description": "Administrator manages supplier information", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "browseProducts", "description": "Customer browses products", "actor": "Customer", "includes": [], "extends": []},
+            {"name": "addProductsToCart", "description": "Customer adds products to cart", "actor": "Customer", "includes": [], "extends": []},
+            {"name": "checkOut", "description": "Customer checks out", "actor": "Customer", "includes": [], "extends": []},
+            {"name": "returnProducts", "description": "Customer returns products", "actor": "Customer", "includes": [], "extends": []},
+            {"name": "acceptPurchaseOrder", "description": "Supplier accepts purchase orders", "actor": "Supplier", "includes": [], "extends": []},
+            {"name": "recommendNewProducts", "description": "Supplier recommends new products", "actor": "Supplier", "includes": [], "extends": []},
+            {"name": "manageReturn", "description": "Administrator manages returns", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "manageSurveillance", "description": "Administrator manages surveillance system", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "analyzeSalesData", "description": "Administrator analyzes sales data", "actor": "Administrator", "includes": [], "extends": []}
+        ]
+    },
+    "system_sequence_diagrams": [
+        {
+            "name": "Process Sale Sequence",
+            "actor": "Cashier",
+            "messages": [
+                {"type": "call", "from": "Cashier", "to": "System", "message": "scanProduct(productId)"},
+                {"type": "call", "from": "Cashier", "to": "System", "message": "enterPaymentDetails(paymentInfo)"},
+                {"type": "return", "from": "System", "to": "Cashier", "message": "provideReceipt()"}
+            ]
+        },
+        {
+            "name": "Open Cash Desk Sequence",
+            "actor": "Cashier",
+            "messages": [
+                {"type": "call", "from": "Cashier", "to": "System", "message": "openCashDesk()"},
+                {"type": "return", "from": "System", "to": "Cashier", "message": "confirmation()"}
+            ]
+        },
+        {
+            "name": "Close Cash Desk Sequence",
+            "actor": "Cashier",
+            "messages": [
+                {"type": "call", "from": "Cashier", "to": "System", "message": "closeCashDesk()"},
+                {"type": "return", "from": "System", "to": "Cashier", "message": "confirmation()"}
+            ]
+        },
+        {
+            "name": "Order Products Sequence",
+            "actor": "StoreManager",
+            "messages": [
+                {"type": "call", "from": "StoreManager", "to": "System", "message": "createOrder(orderDetails)"},
+                {"type": "return", "from": "System", "to": "StoreManager", "message": "orderConfirmation()"}
+            ]
+        },
+        {
+            "name": "Receive Ordered Product Sequence",
+            "actor": "StoreManager",
+            "messages": [
+                {"type": "call", "from": "StoreManager", "to": "System", "message": "receiveProducts(orderId)"},
+                {"type": "return", "from": "System", "to": "StoreManager", "message": "updateStock()"}
+            ]
+        },
+        {
+            "name": "Checkout Sequence",
+            "actor": "Customer",
+            "messages": [
+                {"type": "call", "from": "Customer", "to": "System", "message": "checkout(cartDetails)"},
+                {"type": "return", "from": "System", "to": "Customer", "message": "paymentConfirmation()"}
+            ]
+        },
+        {
+            "name": "Return Products Sequence",
+            "actor": "Customer",
+            "messages": [
+                {"type": "call", "from": "Customer", "to": "System", "message": "returnProducts(returnDetails)"},
+                {"type": "return", "from": "System", "to": "Customer", "message": "refundConfirmation()"}
+            ]
+        },
+        {
+            "name": "Accept Purchase Order Sequence",
+            "actor": "Supplier",
+            "messages": [
+                {"type": "call", "from": "Supplier", "to": "System", "message": "acceptOrder(orderId)"},
+                {"type": "return", "from": "System", "to": "Supplier", "message": "orderAccepted()"}
+            ]
+        }
+    ],
+    "concept_class_diagram": {
+        "classes": [
+            {"name": "Cashier", "attributes": ["cashierId", "name", "shift"], "operations": ["openCashDesk()", "closeCashDesk()", "processSale()"]},
+            {"name": "StoreManager", "attributes": ["managerId", "name"], "operations": ["orderProducts()", "receiveOrderedProduct()", "changePrice()"]},
+            {"name": "Administrator", "attributes": ["adminId", "name"], "operations": ["manageStore()", "manageProductCatalog()", "manageCashDesk()", "manageSupplier()"]},
+            {"name": "Customer", "attributes": ["customerId", "name", "cart"], "operations": ["browseProducts()", "addProductsToCart()", "checkout()", "returnProducts()"]},
+            {"name": "Supplier", "attributes": ["supplierId", "name", "catalog"], "operations": ["acceptPurchaseOrder()", "recommendNewProducts()"]},
+            {"name": "Product", "attributes": ["productId", "name", "price", "stock"], "operations": []},
+            {"name": "Order", "attributes": ["orderId", "productList", "status"], "operations": []}
+        ],
+        "relationships": [
+            {"type": "association", "from": "StoreManager", "to": "Product", "multiplicity": "1..*"},
+            {"type": "association", "from": "Customer", "to": "Product", "multiplicity": "0..*"},
+            {"type": "association", "from": "Supplier", "to": "Product", "multiplicity": "1..*"},
+            {"type": "association", "from": "Cashier", "to": "Order", "multiplicity": "0..*"},
+            {"type": "association", "from": "Order", "to": "Product", "multiplicity": "1..*"}
+        ]
+    }
+}
+```

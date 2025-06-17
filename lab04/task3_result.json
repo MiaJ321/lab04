@@ -1,0 +1,596 @@
+{
+  "use_case_diagram": {
+    "name": "CoCoME超市系统",
+    "actors": [
+      {
+        "name": "Cashier",
+        "description": "负责开关收银台和结算商品。"
+      },
+      {
+        "name": "StoreManager",
+        "description": "负责商品采购、价格设置以及开关店铺。"
+      },
+      {
+        "name": "Administrator",
+        "description": "负责管理系统信息，包括店铺信息、收银台信息、收银员信息、商品信息、商品目录信息和供应商信息。"
+      },
+      {
+        "name": "Customer",
+        "description": "可以浏览商品、将商品添加到购物车、结账和退货。"
+      },
+      {
+        "name": "Supplier",
+        "description": "接受采购订单和推荐新商品。"
+      }
+    ],
+    "use_cases": [
+      {
+        "name": "processSale",
+        "description": "收银员结算商品。",
+        "actor": "Cashier",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "openCashDesk",
+        "description": "收银员打开收银台。",
+        "actor": "Cashier",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "closeCashDesk",
+        "description": "收银员关闭收银台。",
+        "actor": "Cashier",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "orderProducts",
+        "description": "店长下采购订单。",
+        "actor": "StoreManager",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "receiveOrderedProduct",
+        "description": "店长接收采购的商品。",
+        "actor": "StoreManager",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "showStockReports",
+        "description": "店长查看库存报告。",
+        "actor": "StoreManager",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "changePrice",
+        "description": "店长更改商品价格。",
+        "actor": "StoreManager",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "listSuppliers",
+        "description": "店长查看所有供应商。",
+        "actor": "StoreManager",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "openStore",
+        "description": "店长开店。",
+        "actor": "StoreManager",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "closeStore",
+        "description": "店长关店。",
+        "actor": "StoreManager",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "manageStore",
+        "description": "系统管理员管理店铺信息。",
+        "actor": "Administrator",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "manageProductCatalog",
+        "description": "系统管理员管理商品目录。",
+        "actor": "Administrator",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "manageCashDesk",
+        "description": "系统管理员管理收银台信息。",
+        "actor": "Administrator",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "manageCashier",
+        "description": "系统管理员管理收银员信息。",
+        "actor": "Administrator",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "manageItem",
+        "description": "系统管理员管理商品信息。",
+        "actor": "Administrator",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "manageSupplier",
+        "description": "系统管理员管理供应商信息。",
+        "actor": "Administrator",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "browseProducts",
+        "description": "顾客浏览商品。",
+        "actor": "Customer",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "addProductsToCart",
+        "description": "顾客添加商品到购物车。",
+        "actor": "Customer",
+        "includes": [
+          "browseProducts"
+        ],
+        "extends": []
+      },
+      {
+        "name": "checkOut",
+        "description": "顾客结账。",
+        "actor": "Customer",
+        "includes": [
+          "addProductsToCart"
+        ],
+        "extends": []
+      },
+      {
+        "name": "returnProducts",
+        "description": "顾客退货。",
+        "actor": "Customer",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "acceptPurchaseOrder",
+        "description": "供应商接受采购订单。",
+        "actor": "Supplier",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "recommendNewProducts",
+        "description": "供应商推荐新商品。",
+        "actor": "Supplier",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "manageReturn",
+        "description": "系统管理员管理退货。",
+        "actor": "Administrator",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "manageSurveillance",
+        "description": "系统管理员管理监控状态。",
+        "actor": "Administrator",
+        "includes": [],
+        "extends": []
+      },
+      {
+        "name": "analyzeSalesData",
+        "description": "系统管理员分析销售数据。",
+        "actor": "Administrator",
+        "includes": [],
+        "extends": []
+      }
+    ]
+  },
+  "system_sequence_diagrams": [
+    {
+      "name": "processSale",
+      "actor": "Cashier",
+      "messages": [
+        {
+          "type": "call",
+          "from": "Cashier",
+          "to": "POS System",
+          "message": "startTransaction"
+        },
+        {
+          "type": "call",
+          "from": "Cashier",
+          "to": "POS System",
+          "message": "scanItem(itemID, quantity)"
+        },
+        {
+          "type": "return",
+          "from": "POS System",
+          "to": "Cashier",
+          "message": "itemDetails"
+        },
+        {
+          "type": "call",
+          "from": "Cashier",
+          "to": "POS System",
+          "message": "applyDiscount(discountCode)"
+        },
+        {
+          "type": "return",
+          "from": "POS System",
+          "to": "Cashier",
+          "message": "discountApplied"
+        },
+        {
+          "type": "call",
+          "from": "Cashier",
+          "to": "POS System",
+          "message": "completeTransaction(paymentDetails)"
+        },
+        {
+          "type": "return",
+          "from": "POS System",
+          "to": "Cashier",
+          "message": "transactionReceipt"
+        }
+      ]
+    },
+    {
+      "name": "checkOut",
+      "actor": "Customer",
+      "messages": [
+        {
+          "type": "call",
+          "from": "Customer",
+          "to": "E-commerce System",
+          "message": "viewCart"
+        },
+        {
+          "type": "return",
+          "from": "E-commerce System",
+          "to": "Customer",
+          "message": "cartDetails"
+        },
+        {
+          "type": "call",
+          "from": "Customer",
+          "to": "E-commerce System",
+          "message": "proceedToCheckout"
+        },
+        {
+          "type": "return",
+          "from": "E-commerce System",
+          "to": "Customer",
+          "message": "paymentOptions"
+        },
+        {
+          "type": "call",
+          "from": "Customer",
+          "to": "E-commerce System",
+          "message": "submitPayment(paymentInfo)"
+        },
+        {
+          "type": "return",
+          "from": "E-commerce System",
+          "to": "Customer",
+          "message": "orderConfirmation"
+        }
+      ]
+    },
+    {
+      "name": "returnProducts",
+      "actor": "Customer",
+      "messages": [
+        {
+          "type": "call",
+          "from": "Customer",
+          "to": "POS System",
+          "message": "requestReturn(returnID, purchasedItems)"
+        },
+        {
+          "type": "return",
+          "from": "POS System",
+          "to": "Customer",
+          "message": "returnAuthorization"
+        },
+        {
+          "type": "call",
+          "from": "Customer",
+          "to": "POS System",
+          "message": "submitItemsForReturn(items)"
+        },
+        {
+          "type": "return",
+          "from": "POS System",
+          "to": "Customer",
+          "message": "returnReceipt"
+        }
+      ]
+    },
+    {
+      "name": "manageReturn",
+      "actor": "Administrator",
+      "messages": [
+        {
+          "type": "call",
+          "from": "Administrator",
+          "to": "POS System",
+          "message": "retrievePendingReturns"
+        },
+        {
+          "type": "return",
+          "from": "POS System",
+          "to": "Administrator",
+          "message": "pendingReturnsList"
+        },
+        {
+          "type": "call",
+          "from": "Administrator",
+          "to": "POS System",
+          "message": "approveReturn(returnID)"
+        },
+        {
+          "type": "return",
+          "from": "POS System",
+          "to": "Administrator",
+          "message": "approvalConfirmation"
+        },
+        {
+          "type": "call",
+          "from": "Administrator",
+          "to": "POS System",
+          "message": "processRefund(returnID)"
+        },
+        {
+          "type": "return",
+          "from": "POS System",
+          "to": "Administrator",
+          "message": "refundProcessed"
+        }
+      ]
+    },
+    {
+      "name": "acceptPurchaseOrder",
+      "actor": "Supplier",
+      "messages": [
+        {
+          "type": "call",
+          "from": "Supplier",
+          "to": "Supplier Portal",
+          "message": "viewPurchaseOrders"
+        },
+        {
+          "type": "return",
+          "from": "Supplier Portal",
+          "to": "Supplier",
+          "message": "purchaseOrderList"
+        },
+        {
+          "type": "call",
+          "from": "Supplier",
+          "to": "Supplier Portal",
+          "message": "confirmOrder(orderID)"
+        },
+        {
+          "type": "return",
+          "from": "Supplier Portal",
+          "to": "Supplier",
+          "message": "orderConfirmation"
+        }
+      ]
+    }
+  ],
+  "concept_class_diagram": {
+    "classes": [
+      {
+        "name": "Cashier",
+        "attributes": [
+          "cashDeskOpened"
+        ],
+        "operations": [
+          "processSale",
+          "openCashDesk",
+          "closeCashDesk"
+        ]
+      },
+      {
+        "name": "StoreManager",
+        "attributes": [
+          "storeOpened"
+        ],
+        "operations": [
+          "orderProducts",
+          "receiveOrderedProduct",
+          "showStockReports",
+          "changePrice",
+          "listSuppliers",
+          "openStore",
+          "closeStore"
+        ]
+      },
+      {
+        "name": "Administrator",
+        "attributes": [
+          "stores",
+          "cashDesks",
+          "cashiers",
+          "items",
+          "productCatalog",
+          "suppliers",
+          "returns"
+        ],
+        "operations": [
+          "manageStore",
+          "manageProductCatalog",
+          "manageCashDesk",
+          "manageCashier",
+          "manageItem",
+          "manageSupplier",
+          "manageReturn",
+          "manageSurveillance",
+          "analyzeSalesData"
+        ]
+      },
+      {
+        "name": "Customer",
+        "attributes": [
+          "shoppingCart"
+        ],
+        "operations": [
+          "browseProducts",
+          "addProductsToCart",
+          "checkOut",
+          "returnProducts"
+        ]
+      },
+      {
+        "name": "Supplier",
+        "attributes": [
+          "productCatalog"
+        ],
+        "operations": [
+          "acceptPurchaseOrder",
+          "recommendNewProducts"
+        ]
+      },
+      {
+        "name": "Sale",
+        "attributes": [
+          "items",
+          "total"
+        ],
+        "operations": []
+      },
+      {
+        "name": "Product",
+        "attributes": [
+          "price",
+          "stock"
+        ],
+        "operations": []
+      },
+      {
+        "name": "Store",
+        "attributes": [
+          "location",
+          "inventory"
+        ],
+        "operations": []
+      },
+      {
+        "name": "CashDesk",
+        "attributes": [
+          "status",
+          "location"
+        ],
+        "operations": []
+      },
+      {
+        "name": "ShoppingCart",
+        "attributes": [
+          "items"
+        ],
+        "operations": []
+      }
+    ],
+    "relationships": [
+      {
+        "type": "association",
+        "from": "Cashier",
+        "to": "CashDesk",
+        "multiplicity": "1..*"
+      },
+      {
+        "type": "association",
+        "from": "StoreManager",
+        "to": "Store",
+        "multiplicity": "1..*"
+      },
+      {
+        "type": "association",
+        "from": "Administrator",
+        "to": "Store",
+        "multiplicity": "0..*"
+      },
+      {
+        "type": "association",
+        "from": "Administrator",
+        "to": "CashDesk",
+        "multiplicity": "0..*"
+      },
+      {
+        "type": "association",
+        "from": "Administrator",
+        "to": "Cashier",
+        "multiplicity": "0..*"
+      },
+      {
+        "type": "association",
+        "from": "Administrator",
+        "to": "Product",
+        "multiplicity": "0..*"
+      },
+      {
+        "type": "association",
+        "from": "Administrator",
+        "to": "Supplier",
+        "multiplicity": "0..*"
+      },
+      {
+        "type": "association",
+        "from": "Customer",
+        "to": "ShoppingCart",
+        "multiplicity": "1"
+      },
+      {
+        "type": "association",
+        "from": "Customer",
+        "to": "Product",
+        "multiplicity": "0..*"
+      },
+      {
+        "type": "association",
+        "from": "Supplier",
+        "to": "Product",
+        "multiplicity": "0..*"
+      },
+      {
+        "type": "aggregation",
+        "from": "Store",
+        "to": "Inventory",
+        "multiplicity": "1"
+      },
+      {
+        "type": "composition",
+        "from": "ShoppingCart",
+        "to": "Item",
+        "multiplicity": "0..*"
+      },
+      {
+        "type": "dependency",
+        "from": "CashDesk",
+        "to": "Sale",
+        "multiplicity": "0..*"
+      }
+    ]
+  }
+}

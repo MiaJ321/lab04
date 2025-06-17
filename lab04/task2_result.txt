@@ -1,0 +1,95 @@
+```json
+{
+    "use_case_diagram": {
+        "actors": [
+            {"name": "Cashier", "description": "Responsible for handling cash desk operations and processing sales."},
+            {"name": "StoreManager", "description": "Handles ordering, pricing, and store operations."},
+            {"name": "Administrator", "description": "Manages system information, including stores, cash desks, cashiers, items, product catalog, and suppliers."},
+            {"name": "Customer", "description": "Can browse products, add products to a cart, check out, and return products."},
+            {"name": "Supplier", "description": "Handles purchase orders and recommends new products."}
+        ],
+        "use_cases": [
+            {"name": "ProcessSale", "description": "Cashier processes sales for customers", "actor": "Cashier", "includes": [], "extends": []},
+            {"name": "OpenCashDesk", "description": "Cashier opens a cash desk", "actor": "Cashier", "includes": [], "extends": []},
+            {"name": "CloseCashDesk", "description": "Cashier closes a cash desk", "actor": "Cashier", "includes": [], "extends": []},
+            {"name": "OrderProducts", "description": "StoreManager places orders for products", "actor": "StoreManager", "includes": [], "extends": []},
+            {"name": "ReceiveOrderedProduct", "description": "StoreManager receives ordered products", "actor": "StoreManager", "includes": [], "extends": []},
+            {"name": "ShowStockReports", "description": "StoreManager views stock reports", "actor": "StoreManager", "includes": [], "extends": []},
+            {"name": "ChangePrice", "description": "StoreManager changes product prices", "actor": "StoreManager", "includes": [], "extends": []},
+            {"name": "ListSuppliers", "description": "StoreManager lists available suppliers", "actor": "StoreManager", "includes": [], "extends": []},
+            {"name": "OpenStore", "description": "StoreManager opens the store", "actor": "StoreManager", "includes": [], "extends": []},
+            {"name": "CloseStore", "description": "StoreManager closes the store", "actor": "StoreManager", "includes": [], "extends": []},
+            {"name": "ManageStore", "description": "Administrator manages store information", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "ManageProductCatalog", "description": "Administrator manages product catalog information", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "ManageCashDesk", "description": "Administrator manages cash desk information", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "ManageCashier", "description": "Administrator manages cashier information", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "ManageItem", "description": "Administrator manages item information", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "ManageSupplier", "description": "Administrator manages supplier information", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "BrowseProducts", "description": "Customer browses available products", "actor": "Customer", "includes": [], "extends": []},
+            {"name": "AddProductsToCart", "description": "Customer adds products to the shopping cart", "actor": "Customer", "includes": [], "extends": []},
+            {"name": "CheckOut", "description": "Customer completes the checkout process", "actor": "Customer", "includes": [], "extends": []},
+            {"name": "ReturnProducts", "description": "Customer returns products", "actor": "Customer", "includes": [], "extends": []},
+            {"name": "AcceptPurchaseOrder", "description": "Supplier accepts the purchase order", "actor": "Supplier", "includes": [], "extends": []},
+            {"name": "RecommendNewProducts", "description": "Supplier recommends new products to the store", "actor": "Supplier", "includes": [], "extends": []},
+            {"name": "ManageReturn", "description": "Administrator manages product returns", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "ManageSurveillance", "description": "Administrator manages surveillance system settings", "actor": "Administrator", "includes": [], "extends": []},
+            {"name": "AnalyzeSalesData", "description": "Administrator analyzes sales data for insights", "actor": "Administrator", "includes": [], "extends": []}
+        ]
+    },
+    "system_sequence_diagrams": [
+        {
+            "name": "ProcessSale",
+            "actor": "Cashier",
+            "messages": [
+                {"type": "call", "from": "Cashier", "to": "System", "message": "scanItem(barcode)"},
+                {"type": "return", "from": "System", "to": "Cashier", "message": "itemDetails"},
+                {"type": "call", "from": "Cashier", "to": "System", "message": "calculateTotal()"},
+                {"type": "return", "from": "System", "to": "Cashier", "message": "totalAmount"},
+                {"type": "call", "from": "Cashier", "to": "System", "message": "processPayment(paymentDetails)"},
+                {"type": "return", "from": "System", "to": "Cashier", "message": "paymentConfirmation"}
+            ]
+        },
+        {
+            "name": "CheckOut",
+            "actor": "Customer",
+            "messages": [
+                {"type": "call", "from": "Customer", "to": "System", "message": "getCartDetails()"},
+                {"type": "return", "from": "System", "to": "Customer", "message": "cartItems"},
+                {"type": "call", "from": "Customer", "to": "System", "message": "makePayment(paymentInfo)"},
+                {"type": "return", "from": "System", "to": "Customer", "message": "paymentStatus"},
+                {"type": "call", "from": "Customer", "to": "System", "message": "confirmOrder()"},
+                {"type": "return", "from": "System", "to": "Customer", "message": "orderDetails"}
+            ]
+        },
+        {
+            "name": "OrderProducts",
+            "actor": "StoreManager",
+            "messages": [
+                {"type": "call", "from": "StoreManager", "to": "System", "message": "selectProducts(productList)"},
+                {"type": "return", "from": "System", "to": "StoreManager", "message": "productDetails"},
+                {"type": "call", "from": "StoreManager", "to": "System", "message": "createOrder(orderDetails)"},
+                {"type": "return", "from": "System", "to": "StoreManager", "message": "orderConfirmation"}
+            ]
+        }
+    ],
+    "concept_class_diagram": {
+        "classes": [
+            {"name": "CashDesk", "attributes": ["isOpen", "totalSales"], "operations": ["openCashDesk()", "closeCashDesk()"]},
+            {"name": "Product", "attributes": ["name", "price", "stockQuantity"], "operations": ["updatePrice(newPrice)"]},
+            {"name": "Store", "attributes": ["storeName", "shopStatus"], "operations": ["openStore()", "closeStore()"]},
+            {"name": "Order", "attributes": ["orderId", "orderDate", "orderStatus"], "operations": ["createOrder()", "cancelOrder()"]},
+            {"name": "Customer", "attributes": ["customerId", "name", "cart"], "operations": ["addToCart(product)", "removeFromCart(product)", "checkOut()"]},
+            {"name": "Cart", "attributes": ["cartItems", "totalAmount"], "operations": ["calculateTotal()", "emptyCart()"]},
+            {"name": "Supplier", "attributes": ["supplierId", "name", "providedProducts"], "operations": ["acceptOrder(order)"]},
+            {"name": "Administrator", "attributes": ["adminId", "permissions"], "operations": ["manageStore()", "manageProductCatalog()", "manageCashDesk()"]}
+        ],
+        "relationships": [
+            {"type": "association", "from": "CashDesk", "to": "Product", "multiplicity": "1..*"},
+            {"type": "association", "from": "Store", "to": "Order", "multiplicity": "1..*"},
+            {"type": "association", "from": "Customer", "to": "Cart", "multiplicity": "1..1"},
+            {"type": "association", "from": "Supplier", "to": "Product", "multiplicity": "1..*"},
+            {"type": "association", "from": "Administrator", "to": "Store", "multiplicity": "0..*"}
+        ]
+    }
+}
+```
